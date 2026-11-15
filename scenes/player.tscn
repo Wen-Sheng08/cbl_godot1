@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dt7f52c3em1e8"]
+
+[ext_resource type="Texture2D" uid="uid://cmmg2brukusic" path="res://icon.svg" id="1_674bt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rc7xg"]
+radius = 91.350975
+
+[node name="Player" type="Node2D" unique_id=1930490100]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=610918967]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1110441459]
+texture = ExtResource("1_674bt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=641091147]
+shape = SubResource("CircleShape2D_rc7xg")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=980177093]
