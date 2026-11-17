@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ol37uvdbldty"]
 
 [ext_resource type="Script" uid="uid://6pxot6vxrkdo" path="res://scripts/button_swipe.gd" id="1_fksvg"]
+[ext_resource type="Script" uid="uid://dcsrd32haelti" path="res://scripts/start_button.gd" id="2_83ov2"]
 
 [node name="PersonaSelect" type="Control" unique_id=1145814228]
 layout_mode = 3
@@ -98,7 +99,17 @@ rotation = 3.138026
 text = ">"
 script = ExtResource("1_fksvg")
 
+[node name="StartButton" type="Button" parent="." unique_id=1387656003]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -26.0
+offset_right = 211.0
+offset_bottom = 75.0
+text = "START GAME"
+script = ExtResource("2_83ov2")
+
 [connection signal="button_down" from="Player1/Next" to="Player1/Next" method="_on_button_down"]
 [connection signal="button_down" from="Player2/Next" to="Player2/Next" method="_on_button_down"]
 [connection signal="button_down" from="Player3/Next" to="Player3/Next" method="_on_button_down"]
 [connection signal="button_down" from="Player4/Next" to="Player4/Next" method="_on_button_down"]
+[connection signal="button_down" from="StartButton" to="StartButton" method="_on_button_down"]

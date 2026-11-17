@@ -1,7 +1,7 @@
 extends Button
 
 var persona = [
-	"John",
+	"Gerald",
 	"Mary",
 	"Luke",
 	"Emma"
