@@ -1,51 +1,40 @@
-[gd_scene format=4 uid="uid://djoul5hgqnm2u"]
+[gd_scene format=3 uid="uid://djoul5hgqnm2u"]
 
 [ext_resource type="Script" uid="uid://b77r18n36f5s1" path="res://game_control.gd" id="1_kdyc3"]
 [ext_resource type="Texture2D" uid="uid://utx2fvcqi5k0" path="res://assets/map_mockup1.png" id="1_whrjg"]
+[ext_resource type="PackedScene" uid="uid://2jdnnptbwsxd" path="res://scenes/map_node.tscn" id="2_cyf2o"]
 [ext_resource type="PackedScene" uid="uid://c64wtxrty5ai5" path="res://scenes/player.tscn" id="3_eqscl"]
-[ext_resource type="Texture2D" uid="uid://dr6f7p4tr8jqo" path="res://assets/ground_tiles.png" id="4_uxg3y"]
+[ext_resource type="Script" uid="uid://lujqhjrf7j2u" path="res://player_movement.gd" id="4_4synu"]
 [ext_resource type="Script" uid="uid://cygb0u7nbmgwc" path="res://scripts/turn_label.gd" id="5_kdyc3"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdyc3"]
-texture = ExtResource("4_uxg3y")
-0:0/size_in_atlas = Vector2i(4, 6)
-0:0/0 = 0
-4:0/size_in_atlas = Vector2i(4, 6)
-4:0/0 = 0
-8:0/size_in_atlas = Vector2i(4, 6)
-8:0/0 = 0
-12:0/size_in_atlas = Vector2i(4, 6)
-12:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_mcsie"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_kdyc3")
-
-[node name="MainMap" type="Node2D" unique_id=340485721]
+[node name="game" type="Node2D" unique_id=340485721]
 script = ExtResource("1_kdyc3")
 
-[node name="Map" type="Control" parent="." unique_id=2085332002]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1155.0
-offset_bottom = 650.0
+[node name="MainMap" type="Node2D" parent="." unique_id=1299177637]
 
-[node name="Sprite2D" type="Sprite2D" parent="Map" unique_id=770034352]
-position = Vector2(664, 346)
-scale = Vector2(0.8827972, 0.9388889)
-texture = ExtResource("1_whrjg")
+[node name="Tiles" type="Node2D" parent="MainMap" unique_id=36369645]
 
-[node name="Player" parent="." unique_id=520328259 instance=ExtResource("3_eqscl")]
+[node name="MapNode2" parent="MainMap/Tiles" unique_id=466828435 instance=ExtResource("2_cyf2o")]
+position = Vector2(557, 420)
+metadata/minigame = "cooking"
+
+[node name="MapNode3" parent="MainMap/Tiles" unique_id=293519538 instance=ExtResource("2_cyf2o")]
+position = Vector2(871, 350)
+metadata/minigame = "sport"
+
+[node name="MapNode1" parent="MainMap/Tiles" unique_id=2092582293 instance=ExtResource("2_cyf2o")]
+position = Vector2(354, 515)
+metadata/minigame = "transport"
+
+[node name="MapNode" parent="MainMap/Tiles" unique_id=596106236 instance=ExtResource("2_cyf2o")]
+position = Vector2(501, 216)
+
+[node name="Player" parent="MainMap" unique_id=520328259 instance=ExtResource("3_eqscl")]
 z_index = 2
 position = Vector2(358, 467)
+script = ExtResource("4_4synu")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1143449131]
-tile_map_data = PackedByteArray("AAALAA8AAAAAAAAAAAAOAA4AAAAAAAAAAAASAA0AAAAAAAAAAAAWAA4AAAAAAAAAAAAWAA0AAAAEAAAAAAAcAAUAAAAEAAAAAAAZAAIAAAAEAAAAAAAdAAYAAAAIAAAAAAAfAAgAAAAIAAAAAAAiAAoAAAAIAAAAAAAZABAAAAAAAAAAAAAdABIAAAAAAAAAAAAeABEAAAAMAAAAAAAiABEAAAAMAAAAAAAlAA8AAAAMAAAAAAAlAA4AAAAIAAAAAAAfABQAAAAAAAAAAAAZAAoAAAAEAAAAAAAaAAcAAAAEAAAAAAA=")
-tile_set = SubResource("TileSet_mcsie")
-
-[node name="GUI" type="Node" parent="." unique_id=1246254234]
-
-[node name="Control" type="Control" parent="GUI" unique_id=1183241345]
+[node name="GUI2" type="Control" parent="MainMap" unique_id=1183241345]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 113.0
@@ -53,7 +42,7 @@ offset_top = -4.0
 offset_right = 208.0
 offset_bottom = 53.0
 
-[node name="Label" type="Label" parent="GUI/Control" unique_id=657042502]
+[node name="Label" type="Label" parent="MainMap/GUI2" unique_id=657042502]
 layout_mode = 0
 offset_right = 151.0
 offset_bottom = 68.0
@@ -63,3 +52,11 @@ text = "TURN_TEXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_kdyc3")
+
+[node name="bg" type="TextureRect" parent="MainMap" unique_id=120401518]
+z_index = -2
+offset_left = -397.0
+offset_top = -209.0
+offset_right = 1523.0
+offset_bottom = 871.0
+texture = ExtResource("1_whrjg")

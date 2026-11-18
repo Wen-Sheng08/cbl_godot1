@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://2jdnnptbwsxd"]
 
 [ext_resource type="Texture2D" uid="uid://ckpc2nkmjvhdo" path="res://assets/node_mockup1.png" id="1_hs614"]
+[ext_resource type="Script" uid="uid://bddj8mypy767o" path="res://scripts/click_detection.gd" id="2_whnn0"]
 
 [sub_resource type="GDScript" id="GDScript_hs614"]
 script/source = "extends Sprite2D
@@ -16,10 +17,20 @@ func _process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8u48x"]
+radius = 22.505554
+
 [node name="MapNode" type="Node2D" unique_id=466828435]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1887277801]
-position = Vector2(616, 343)
-scale = Vector2(0.38697916, 0.41111112)
+position = Vector2(1, -1)
+scale = Vector2(0.2627604, 0.28796294)
 texture = ExtResource("1_hs614")
 script = SubResource("GDScript_hs614")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1285018294]
+script = ExtResource("2_whnn0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=908078002]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_8u48x")
