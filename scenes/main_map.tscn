@@ -1,0 +1,65 @@
+[gd_scene format=4 uid="uid://djoul5hgqnm2u"]
+
+[ext_resource type="Script" uid="uid://b77r18n36f5s1" path="res://game_control.gd" id="1_kdyc3"]
+[ext_resource type="Texture2D" uid="uid://utx2fvcqi5k0" path="res://assets/map_mockup1.png" id="1_whrjg"]
+[ext_resource type="PackedScene" uid="uid://c64wtxrty5ai5" path="res://scenes/player.tscn" id="3_eqscl"]
+[ext_resource type="Texture2D" uid="uid://dr6f7p4tr8jqo" path="res://assets/ground_tiles.png" id="4_uxg3y"]
+[ext_resource type="Script" uid="uid://cygb0u7nbmgwc" path="res://scripts/turn_label.gd" id="5_kdyc3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdyc3"]
+texture = ExtResource("4_uxg3y")
+0:0/size_in_atlas = Vector2i(4, 6)
+0:0/0 = 0
+4:0/size_in_atlas = Vector2i(4, 6)
+4:0/0 = 0
+8:0/size_in_atlas = Vector2i(4, 6)
+8:0/0 = 0
+12:0/size_in_atlas = Vector2i(4, 6)
+12:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_mcsie"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_kdyc3")
+
+[node name="MainMap" type="Node2D" unique_id=340485721]
+script = ExtResource("1_kdyc3")
+
+[node name="Map" type="Control" parent="." unique_id=2085332002]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1155.0
+offset_bottom = 650.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Map" unique_id=770034352]
+position = Vector2(664, 346)
+scale = Vector2(0.8827972, 0.9388889)
+texture = ExtResource("1_whrjg")
+
+[node name="Player" parent="." unique_id=520328259 instance=ExtResource("3_eqscl")]
+z_index = 2
+position = Vector2(358, 467)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1143449131]
+tile_map_data = PackedByteArray("AAALAA8AAAAAAAAAAAAOAA4AAAAAAAAAAAASAA0AAAAAAAAAAAAWAA4AAAAAAAAAAAAWAA0AAAAEAAAAAAAcAAUAAAAEAAAAAAAZAAIAAAAEAAAAAAAdAAYAAAAIAAAAAAAfAAgAAAAIAAAAAAAiAAoAAAAIAAAAAAAZABAAAAAAAAAAAAAdABIAAAAAAAAAAAAeABEAAAAMAAAAAAAiABEAAAAMAAAAAAAlAA8AAAAMAAAAAAAlAA4AAAAIAAAAAAAfABQAAAAAAAAAAAAZAAoAAAAEAAAAAAAaAAcAAAAEAAAAAAA=")
+tile_set = SubResource("TileSet_mcsie")
+
+[node name="GUI" type="Node" parent="." unique_id=1246254234]
+
+[node name="Control" type="Control" parent="GUI" unique_id=1183241345]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 113.0
+offset_top = -4.0
+offset_right = 208.0
+offset_bottom = 53.0
+
+[node name="Label" type="Label" parent="GUI/Control" unique_id=657042502]
+layout_mode = 0
+offset_right = 151.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+theme_override_font_sizes/font_size = 25
+text = "TURN_TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_kdyc3")
